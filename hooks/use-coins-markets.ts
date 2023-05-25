@@ -19,14 +19,14 @@ interface TypesCoinsMarkets {
 
 export const useGetCoinsMarkets = (currency: string) => {
     
-    const { data, isLoading, error } = useQuery(
-        ['cache-coins-markets'], {
-            queryFn: async () => {
-                const { data } = await axios.get(
-                        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&order=market_cap_desc&per_page=${ITEMS_PER_PAGE}&page=1&sparkline=false&locale=en`
-                    )
-                    return data as TypesCoinsMarkets
-            }
+    const { data, isFetching, isLoading, isSuccess, error } = useQuery({
+        queryKey: ['cache-coins-markets'], 
+        queryFn: async () => {
+            const { data } = await axios.get(
+                    `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&order=market_cap_desc&per_page=${ITEMS_PER_PAGE}&page=1&sparkline=false&locale=en`
+                )
+                return data as TypesCoinsMarkets
+        }
     })
-    return { data, isLoading, error }
+    return { data, isFetching, isLoading, isSuccess, error }
 }

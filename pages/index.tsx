@@ -6,7 +6,7 @@ import { useGetCoinsMarkets } from "@/hooks/use-coins-markets";
 import { CURRENCY } from "@/constants";
 
 const Home: React.FC = () => {
-  const { data, isLoading, error } = useGetCoinsMarkets(CURRENCY);
+  const { data, isFetching, isLoading, error } = useGetCoinsMarkets(CURRENCY);
   return (
     <>
       <Head>
@@ -27,9 +27,11 @@ const Home: React.FC = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
           {/* End hero unit */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-            {isLoading ? 'Content is loading...'
+            {isFetching? 'Fetching...'
             :
-            error ? 'There was an error'
+            isLoading ? 'Content is loading...'
+            :
+            error ? <h2>{JSON.stringify(error)}</h2>
             :
             data && data.map((card: any) => (
               <div key={card.id} className="flex flex-col">
