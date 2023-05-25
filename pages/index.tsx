@@ -1,9 +1,9 @@
-import Head from "next/head";
-import Image from "next/image";
-import React from "react";
+import Head from 'next/head';
+import Image from 'next/image';
+import React from 'react';
 import Link from 'next/link';
-import { useGetCoinsMarkets } from "@/hooks/use-coins-markets";
-import { CURRENCY } from "@/constants";
+import { useGetCoinsMarkets } from '@/hooks/use-coins-markets';
+import { CURRENCY } from '@/constants';
 
 const Home: React.FC = () => {
   const { data, isFetching, isLoading, error } = useGetCoinsMarkets(CURRENCY);

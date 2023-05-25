@@ -1,6 +1,6 @@
-import { ITEMS_PER_PAGE } from '@/constants'
-import { useQuery } from '@tanstack/react-query'
-import axios from 'axios'
+import { ITEMS_PER_PAGE } from '@/constants';
+import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
 
 interface TypesCoinsMarkets {
     id: string,
@@ -15,10 +15,9 @@ interface TypesCoinsMarkets {
     high_24h: number
     low_24h: number
     price_change_24h: number
-}
+};
 
 export const useGetCoinsMarkets = (currency: string) => {
-    
     const { data, isFetching, isLoading, isSuccess, error } = useQuery({
         queryKey: ['cache-coins-markets'], 
         queryFn: async () => {
@@ -27,6 +26,6 @@ export const useGetCoinsMarkets = (currency: string) => {
                 )
                 return data as TypesCoinsMarkets
         }
-    })
+    });
     return { data, isFetching, isLoading, isSuccess, error }
-}
+};
